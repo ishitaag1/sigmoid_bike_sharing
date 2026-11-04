@@ -137,7 +137,7 @@ Assumed: clear weather (typical temperature for the month).
 
 *Dataset: Fanaee-T, H. and Gama, J., "Event labeling combining ensemble detectors and background knowledge", Progress in Artificial Intelligence (2013). doi:10.1007/s13748-013-0040-3*
 
-## Running the Prototype
+## 8. Running the Prototype
 
 ```bash
 python demand_assistant.py
