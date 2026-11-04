@@ -2,6 +2,8 @@
 
 **Short answer: .** Riders can't find bikes because of *when and where* the bikes are, not how many there are. Commuters empty residential stations and fill downtown docks every working-day morning, then reverse it in the evening. Rebalancing around those peaks should fix most complaints. Buying bikes makes sense only to keep up with growth (+65% in one year).
 
+**To view the full report with charts:** open `analysis.ipynb` in Jupyter (`jupyter notebook analysis.ipynb`), or open `index.html` in any browser for the static version.
+
 **Live report:** https://github.com/ishitaag1/sigmoid_bike_sharing
 
 ---
@@ -50,19 +52,20 @@ No nulls or duplicates, `casual + registered = cnt` on every row, and hourly tot
 
 ## 3. Hypothesis
 
-**H1: the shortage is a timing problem, not a fleet-size problem.** On working days, peak-hour rentals (7–9 AM, 4–7 PM) are higher than off-peak daytime (10 AM–3 PM).
-
-- **Test:** one-sided Mann–Whitney U (counts are skewed) plus the effect size.
-- **Result:** the median peak hour has **~2x** the rentals of the median off-peak hour, p ≈ 0. H0 rejected.
-- **Control:** on weekends the ratio flips to 0.5x, so the spike comes from commuting.
+**H1: the shortage is a distribution problem, not a fleet-size problem.** If this is true, demand should be concentrated at a few peak hours (commuters cause the spike), and the system-wide fleet should be large enough to cover it — bikes are just at the wrong stations.
+ 
+**Part 1 — demand concentration (Mann–Whitney U test):**
+- **Test:** one-sided Mann–Whitney U (counts are skewed) on working-day peak vs off-peak hours.
+- **Result:** the median peak hour has **~2x** the rentals of the median off-peak hour, p ≈ 0.
+- **Control:** on weekends the ratio flips to 0.5x, so the spike comes from commuting, not general demand.
 - **Concentration:** 7 peak hours carry **58%** of working-day rentals.
-
-**Real-world test (pilot):**
-- Randomly assign ~20 station clusters to rebalancing vs business as usual for 4–6 weeks.
-- Rebalancing means: fill residential before 7 AM, clear full downtown docks mid-morning, keep enough bikes downtown for 5 PM.
-- Primary metric: minutes stations sit empty or full during peaks.
-- Guardrail: rebalancing cost per extra ride.
-
+*Note: the 2x ratio alone is consistent with either a fleet that is too small at peaks or one that is poorly distributed. The next part distinguishes them.*
+ 
+**Part 2 — fleet adequacy (utilisation check):**
+- At the busiest 1% of hours the system needs **~400 bikes** simultaneously (Little's Law: 835 rentals/hr × 20 min ÷ 60 ÷ 70% utilisation, see Section 5).
+- Averaged across 2012, utilisation is **~20%** — the other 80% of the fleet is docked and idle.
+- In **93% of hours** more than half the fleet sits empty.
+- Conclusion: the city has enough bikes. They are parked at the wrong stations when and where riders need them.
 ## 4. Demand model
 
 - **Target:** `log(rentals + 1)` per hour.
