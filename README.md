@@ -136,3 +136,18 @@ Assumed: clear weather (typical temperature for the month).
 - `yr` is a 2011/2012 switch, so future growth needs a separate adjustment.
 
 *Dataset: Fanaee-T, H. and Gama, J., "Event labeling combining ensemble detectors and background knowledge", Progress in Artificial Intelligence (2013). doi:10.1007/s13748-013-0040-3*
+
+## Running the Prototype
+
+```bash
+python demand_assistant.py
+```
+
+Example questions to try:
+
+- How many bikes do we need at 8am on Monday in September?
+- Busiest hours on a rainy Saturday in July?
+- Will 400 bikes be enough at 5pm on Friday?
+- How busy is a working day in August?
+
+The assistant extracts day, hour, month, and weather from your question and returns a model-backed forecast with an operational tip.
