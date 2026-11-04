@@ -1,6 +1,6 @@
 # Bike Sharing Case Study: Should we just buy more bikes?
 
-**Short answer: ** Riders can't find bikes because of *when and where* the bikes are, not how many there are. Commuters empty residential stations and fill downtown docks every working-day morning, then reverse it in the evening. Rebalancing around those peaks should fix most complaints. Buying bikes makes sense only to keep up with growth (+65% in one year).
+**Short answer: .** Riders can't find bikes because of *when and where* the bikes are, not how many there are. Commuters empty residential stations and fill downtown docks every working-day morning, then reverse it in the evening. Rebalancing around those peaks should fix most complaints. Buying bikes makes sense only to keep up with growth (+65% in one year).
 
 **Live report:** https://github.com/ishitaag1/sigmoid_bike_sharing
 
